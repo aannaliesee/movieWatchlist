@@ -1,3 +1,6 @@
+const express = require('express');
+const router = express.Router();
+
 const swaggerAutogen = require('swagger-autogen')();
 
 const doc = {
@@ -6,7 +9,7 @@ const doc = {
         description: 'Movie Watchlist Api'
 },
     host: 'localhost:3000',
-    schemes: ['http','https' ]
+    schemes: ['http']
 };
 
 const outputFile = './swagger.json';

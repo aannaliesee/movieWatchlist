@@ -4,16 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "swagger": "node swagger.js",
+    "build": "swagger-autogen -i ./swagger.js -o ./swagger.json -s ./swagger.yml"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^3.0.3"
+    "nodemon": "^3.0.3",
+    "swagger-autogen": "^2.23.7"
   },
   "dependencies": {
+    "body-parser": "^1.20.2",
     "dotenv": "^16.4.4",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "swagger-ui-express": "^5.0.0"
   }
 }

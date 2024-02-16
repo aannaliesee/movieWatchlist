@@ -1,0 +1,38 @@
+
+###RENDER
+GET 
+
+###RENDER swagger 
+GET 
+
+###localhost swagger UI
+http://localhost:8080/api-docs/
+
+###Get All Movies
+GET http://localhost:8080/api/movies
+
+###Get Movie by ID
+GET http://localhost:8080/api/movies/65c6b1ea00f060d88e36047e
+
+###Create Movie
+POST http://localhost:8080/api/movies
+Content-Type: application/json
+
+{
+  "title": "Avatar",
+  "director": "James Cameron",
+  "releaseYear": 2000,
+  "genre": "Sci-Fi",
+  "rating": 9.5
+}
+
+###Update Movie
+PUT http://localhost:8080/api/movies/65c817f3c57481f25c8f3c4f
+Content-Type: application/json
+
+{
+  "rating": 5.0
+}
+
+###Delete Movie
+DELETE http://localhost:8080/api/movies/65c8186ac57481f25c8f3c56
