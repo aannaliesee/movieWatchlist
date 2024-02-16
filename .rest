@@ -5,14 +5,17 @@ GET
 ###RENDER swagger 
 GET 
 
+###localhost
+GET http://localhost:8080
+
 ###localhost swagger UI
-http://localhost:8080/api-docs/
+GET http://localhost:8080/api-docs/
 
 ###Get All Movies
-GET http://localhost:8080/api/movies
+GET http://localhost:8080/movies
 
 ###Get Movie by ID
-GET http://localhost:8080/api/movies/65c6b1ea00f060d88e36047e
+GET http://localhost:8080/movies/65c6b1ea00f060d88e36047e
 
 ###Create Movie
 POST http://localhost:8080/api/movies
