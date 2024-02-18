@@ -1,44 +1,37 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
+//const { handleErrors } = require('../middleware'); // Import the centralized error handler
+const { validateMovie } = require('../middleware/validate'); // Import the movie validation middleware
 
 
-  const getMovies = async (req, res) => {
-    const result = await mongodb.getDb().db().collection('movies').find();
-    result.toArray().then((lists) => {
+
+const getMovies = async (req, res) => {
+  try {
+      const result = await mongodb.getDb().db().collection('movies').find();
+      const lists = await result.toArray();
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(lists);
-    });
-  };
+  } catch (error) {
+      handleErrors(error, res);
+  }
+};
 
-  const getMovieById = async (req, res) => {
-    const movieId = new ObjectId(req.params.id);
-    const result = await mongodb.getDb().db().collection('movies').find({ _id: movieId });
-    result.toArray().then((lists) => {
+const getMovieById = async (req, res) => {
+  try {
+      const movieId = new ObjectId(req.params.id);
+      const result = await mongodb.getDb().db().collection('movies').find({ _id: movieId });
+      const lists = await result.toArray();
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(lists[0]);
-    });
-  };
+  } catch (error) {
+      handleErrors(error, res);
+  }
+};
 
-  const addMovie = async (req, res) => {
-    const movie = {
-      title: req.body.title,
-      director: req.body.director,
-      releaseYear: req.body.releaseYear,
-      genre: req.body.genre,
-      rating: req.body.rating
-    };
-    const response = await mongodb.getDb().db().collection('movies').insertOne(movie);
-    if (response.acknowledged) {
-      res.status(201).json(response);
-    } else {
-      res.status(500).json(response.error || 'Some error occurred while adding the movie.');
-    }
-  };
-  
-  
-    const updateMovie = async (req, res) => {
-      const movieId = new ObjectId(req.params.id);
-      // be aware of updateOne if you only want to update specific fields
+const addMovie = async (req, res) => {
+  try {
+    // Use the validateMovie middleware for validation
+    validateMovie(req, res, async () => {
       const movie = {
         title: req.body.title,
         director: req.body.director,
@@ -46,29 +39,52 @@ const ObjectId = require('mongodb').ObjectId;
         genre: req.body.genre,
         rating: req.body.rating
       };
-      const response = await mongodb
-        .getDb()
-        .db()
-        .collection('movies')
-        .replaceOne({ _id: movieId }, movie);
-      console.log(response);
-      if (response.modifiedCount > 0) {
-        res.status(204).send();
+      const response = await mongodb.getDb().db().collection('movies').insertOne(movie);
+      if (response.acknowledged) {
+        res.status(201).json(response);
       } else {
-        res.status(500).json(response.error || 'Some error occurred while updating the movie.');
+        handleErrors(response.error || 'Some error occurred while adding the movie.', res, 500);
       }
-    };
-   
-    const deleteMovie = async (req, res) => {
+    });
+  } catch (error) {
+    handleErrors(error, res);
+  }
+};
+  
+  
+const updateMovie = async (req, res) => {
+  try {
+      const movieId = new ObjectId(req.params.id);
+      const movie = {
+          title: req.body.title,
+          director: req.body.director,
+          releaseYear: req.body.releaseYear,
+          genre: req.body.genre,
+          rating: req.body.rating
+      };
+      const response = await mongodb.getDb().db().collection('movies').replaceOne({ _id: movieId }, movie);
+      if (response.modifiedCount > 0) {
+          res.status(204).send();
+      } else {
+          handleErrors(response.error || 'Some error occurred while updating the movie.', res, 500);
+      }
+  } catch (error) {
+      handleErrors(error, res);
+  }
+};
+const deleteMovie = async (req, res) => {
+  try {
       const movieId = new ObjectId(req.params.id);
       const response = await mongodb.getDb().db().collection('movies').remove({ _id: movieId }, true);
-      console.log(response);
       if (response.deletedCount > 0) {
-        res.status(204).send();
+          res.status(204).send();
       } else {
-        res.status(500).json(response.error || 'Some error occurred while deleting the movie.');
+          handleErrors(response.error || 'Some error occurred while deleting the movie.', res, 500);
       }
-    };
+  } catch (error) {
+      handleErrors(error, res);
+  }
+};
   
   
     module.exports = {

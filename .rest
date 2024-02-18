@@ -15,10 +15,10 @@ GET http://localhost:8080/api-docs/
 GET http://localhost:8080/movies
 
 ###Get Movie by ID
-GET http://localhost:8080/movies/65c6b1ea00f060d88e36047e
+GET http://localhost:8080/movies/65ced6193b1a78f6ac48f711
 
 ###Create Movie
-POST http://localhost:8080/api/movies
+POST http://localhost:8080/movies
 Content-Type: application/json
 
 {
@@ -30,12 +30,16 @@ Content-Type: application/json
 }
 
 ###Update Movie
-PUT http://localhost:8080/api/movies/65c817f3c57481f25c8f3c4f
+PUT http://localhost:8080/movies/65ced126dcc6de85e4f97a0e HTTP/1.1
 Content-Type: application/json
 
 {
-  "rating": 5.0
+  "title": "Avatar",
+  "director": "James Cameron",
+  "releaseYear": 2000,
+  "genre": "Sci-Fi",
+  "rating": 9.5
 }
 
 ###Delete Movie
-DELETE http://localhost:8080/api/movies/65c8186ac57481f25c8f3c56
+DELETE http://localhost:8080/movies/65ced126dcc6de85e4f97a0e HTTP/1.1
