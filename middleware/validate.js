@@ -4,8 +4,8 @@ const validator = require('../helpers/validate');
 const validateMovie = (req, res, next) => {
     const validationRule = {
         title: 'required|string',
-        director: 'required|string',
-        releaseYear: 'required|integer',
+        director: 'required|string|regex:/^[A-Za-z ]+$/',
+        releaseYear: 'required|integer|digits:4',
         genre: 'string',
         rating: 'number'
     };
@@ -23,5 +23,5 @@ const validateMovie = (req, res, next) => {
 };
 
 module.exports = {
-    validateMovie,
+    validateMovie
 };
