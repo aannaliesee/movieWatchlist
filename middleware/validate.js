@@ -6,8 +6,8 @@ const validateMovie = (req, res, next) => {
         title: 'required|string',
         director: 'required|string',
         releaseYear: 'required|integer',
-        genre: 'required|string',
-        rating: 'required|number'
+        genre: 'string',
+        rating: 'number'
     };
     validator(req.body, validationRule, {}, (err, status) => {
         if (!status) {

@@ -11,7 +11,7 @@ router.get('/:id', movieController.getMovieById);
 // Use validateMovie middleware for validation in the post route
 router.post('/', validateMovie, movieController.addMovie);
 
-router.put('/:id', movieController.updateMovie);
+router.put('/:id', validateMovie, movieController.updateMovie);
 
 router.delete('/:id', movieController.deleteMovie);
 

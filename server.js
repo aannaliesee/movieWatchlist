@@ -13,6 +13,11 @@ app
   })
   .use('/', require('./routes'));
 
+  //catchall for errors that show what errors are thrown
+  process.on('uncaughtException', (err, origin) => {
+    console.log(process.stderr.fd, `Caught exception: ${err}\n` + `Exception origin: ${origin}`);
+  });
+
 mongodb.initDb((err) => {
   if (err) {
     console.log(err);

@@ -1,9 +1,9 @@
 
 ###RENDER
-GET 
+GET https://moviewatchlist.onrender.com
 
 ###RENDER swagger 
-GET 
+GET https://moviewatchlist.onrender.com/api-docs
 
 ###localhost
 GET http://localhost:8080
@@ -15,7 +15,7 @@ GET http://localhost:8080/api-docs/
 GET http://localhost:8080/movies
 
 ###Get Movie by ID
-GET http://localhost:8080/movies/65ced6193b1a78f6ac48f711
+GET http://localhost:8080/movies/65ced126dcc6de85e4f97a10
 
 ###Create Movie
 POST http://localhost:8080/movies
