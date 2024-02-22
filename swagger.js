@@ -8,7 +8,7 @@ const doc = {
         title: 'Movie Api',
         description: 'Movie Watchlist Api'
 },
-    host: 'moviewatchlist.onrender.com',
+    host: 'localhost:8080',
     schemes: ['https']
 };
 
