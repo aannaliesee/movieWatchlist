@@ -9,6 +9,7 @@ const validateMovie = (req, res, next) => {
         genre: 'string',
         rating: 'number'
     };
+    //error handling
     validator(req.body, validationRule, {}, (err, status) => {
         if (!status) {
             res.status(412).send({
