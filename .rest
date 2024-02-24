@@ -1,3 +1,5 @@
+###Google AUTH
+GET http://localhost:8080/auth/google
 
 ###RENDER
 GET https://moviewatchlist.onrender.com

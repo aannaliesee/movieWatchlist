@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongodb = require('./db/connect');
+const dotenv = require('dotenv');
 
 const session = require('express-session');
 const passport = require('passport');
@@ -9,10 +10,13 @@ require('./db/passport-config'); // Path to your passport configuration file
 const port = process.env.PORT || 8080;
 const app = express();
 
+dotenv.config(); // Load environment variables from .env file
+console.log('SESSION_SECRET:', process.env.SESSION_SECRET);
+
 //passport configuration
 
 app.use(session({
-  secret: 'your_secret_key',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }));
@@ -20,7 +24,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Authentication route
+// Authentication for Google
 app.get('/auth/google',
     passport.authenticate('google', { scope: ['profile', 'email'] })
 );
@@ -29,6 +33,29 @@ app.get('/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/' }),
     (req, res) => {
         // Successful authentication, redirect to home or dashboard
+        res.redirect('/');
+    }
+);
+//Routes for Facebook authentication
+app.get('/auth/facebook',
+    passport.authenticate('facebook')
+);
+
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', { failureRedirect: '/' }),
+    (req, res) => {
+        res.redirect('/');
+    }
+);
+
+// Routes for GitHub authentication
+app.get('/auth/github',
+    passport.authenticate('github')
+);
+
+app.get('/auth/github/callback',
+    passport.authenticate('github', { failureRedirect: '/' }),
+    (req, res) => {
         res.redirect('/');
     }
 );
@@ -65,6 +92,12 @@ app
   process.on('uncaughtException', (err, origin) => {
     console.log(process.stderr.fd, `Caught exception: ${err}\n` + `Exception origin: ${origin}`);
   });
+
+  //debugging
+  app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Internal Server Error');
+});
 
 mongodb.initDb((err) => {
   if (err) {
