@@ -32,6 +32,8 @@ app.get('/auth/google',
 app.get('/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/' }),
     (req, res) => {
+      //debugging 
+        console.log('Google callback reached successfully');
         // Successful authentication, redirect to home or dashboard
         res.redirect('/');
     }
