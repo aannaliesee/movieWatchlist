@@ -38,21 +38,10 @@ app.get('/auth/google/callback',
         res.redirect('/');
     }
 );
-//Routes for Facebook authentication
-app.get('/auth/facebook',
-    passport.authenticate('facebook')
-);
-
-app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', { failureRedirect: '/' }),
-    (req, res) => {
-        res.redirect('/');
-    }
-);
 
 // Routes for GitHub authentication
 app.get('/auth/github',
-    passport.authenticate('github')
+    passport.authenticate('github', { scope: ['user:email'] })
 );
 
 app.get('/auth/github/callback',

@@ -1,7 +1,6 @@
 // passport-config.js
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const FacebookStrategy = require('passport-facebook').Strategy;
 const GitHubStrategy = require('passport-github').Strategy;
 
 passport.use(new GoogleStrategy({
@@ -21,13 +20,7 @@ passport.use(new GoogleStrategy({
     // Pass the user object to the done callback
     done(null, user);
 }));
-passport.use(new FacebookStrategy({
-    clientID: process.env.FACEBOOK_APP_ID,
-    clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: process.env.FACEBOOK_CALLBACK_URL
-}, (accessToken, refreshToken, profile, done) => {
-    // Your Facebook authentication logic here
-}));
+
 
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
