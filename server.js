@@ -35,7 +35,7 @@ app.get('/auth/google/callback',
       //debugging 
         console.log('Google callback reached successfully');
         // Successful authentication, redirect to home or dashboard
-        res.redirect('/');
+        res.redirect('/profile');
     }
 );
 
@@ -47,7 +47,7 @@ app.get('/auth/github',
 app.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/' }),
     (req, res) => {
-        res.redirect('/');
+        res.redirect('/profile');
     }
 );
 
@@ -56,6 +56,13 @@ app.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
 });
+
+
+// Protected route example (profile or landing page)
+app.get('/profile', ensureAuthenticated, (req, res) => {
+  res.render('profile', { user: req.user });
+});
+
 
 // Ensure authentication middleware
 function ensureAuthenticated(req, res, next) {
