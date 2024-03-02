@@ -1,0 +1,38 @@
+[
+    {
+      "name": "Leonardo DiCaprio",
+      "birthDate": "November 11, 1974",
+      "birthPlace": "Los Angeles, California, USA",
+      "mostFamousMovie": "Titanic",
+      "hasStarOnWalkOfFame": true
+    },
+    {
+      "name": "Samuel L. Jackson",
+      "birthDate": "December 21, 1948",
+      "birthPlace": "Washington, D.C., USA",
+      "mostFamousMovie": "Pulp Fiction",
+      "hasStarOnWalkOfFame": true
+    },
+    {
+      "name": "Marlon Brando",
+      "birthDate": "April 3, 1924",
+      "birthPlace": "Omaha, Nebraska, USA",
+      "mostFamousMovie": "The Godfather",
+      "hasStarOnWalkOfFame": true
+    },
+    {
+      "name": "Al Pacino",
+      "birthDate": "April 25, 1940",
+      "birthPlace": "New York City, New York, USA",
+      "mostFamousMovie": "The Godfather",
+      "hasStarOnWalkOfFame": true
+    },
+    {
+      "name": "Viggo Mortensen",
+      "birthDate": "October 20, 1958",
+      "birthPlace": "New York City, New York, USA",
+      "mostFamousMovie": "The Lord of the Rings: The Fellowship of the Ring",
+      "hasStarOnWalkOfFame": false
+    }
+  ]
+  

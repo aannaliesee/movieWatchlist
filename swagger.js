@@ -9,7 +9,7 @@ const doc = {
         description: 'Movie Watchlist Api'
 },
     host: 'localhost:8080',
-    schemes: ['https']
+    schemes: ['https', 'http']
 };
 
 const outputFile = './swagger.json';
