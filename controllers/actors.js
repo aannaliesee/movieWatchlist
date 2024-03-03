@@ -1,7 +1,7 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 //const { handleErrors } = require('../middleware'); // Import the centralized error handler
-//const { validateMovie } = require('../middleware/validate'); // Import the movie validation middleware
+const { validateActor } = require('../middleware/validate'); // Import the actor validation middleware
 
 
 

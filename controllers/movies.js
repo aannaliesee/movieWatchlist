@@ -4,18 +4,6 @@ const ObjectId = require('mongodb').ObjectId;
 const { validateMovie } = require('../middleware/validate'); // Import the movie validation middleware
 
 
-/*
-const getMovies = async (req, res) => {
-  try {
-      const result = await mongodb.getDb().db().collection('movies').find();
-      const lists = await result.toArray();
-      res.setHeader('Content-Type', 'application/json');
-      res.status(200).json(lists);
-  } catch (error) {
-      handleErrors(error, res);
-  }
-};
-*/
 const getMovies = (req, res) => {
   mongodb
     .getDb()
@@ -30,19 +18,7 @@ const getMovies = (req, res) => {
       res.status(200).json(lists);
     });
 };
-/*
-const getMovieById = async (req, res) => {
-  try {
-      const movieId = new ObjectId(req.params.id);
-      const result = await mongodb.getDb().db().collection('movies').find({ _id: movieId });
-      const lists = await result.toArray();
-      res.setHeader('Content-Type', 'application/json');
-      res.status(200).json(lists[0]);
-  } catch (error) {
-      handleErrors(error, res);
-  }
-};
-*/
+
 const getMovieById = (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid movie id to find a movie.');

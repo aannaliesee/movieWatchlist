@@ -23,6 +23,30 @@ const validateMovie = (req, res, next) => {
     });
 };
 
+const validateActor = (req, res, next) => {
+    const validationRule = {
+      name: 'required|string',
+      birthDate: 'required|date', 
+      birthPlace: 'required|string',
+      mostFamousMovie: 'string',
+      hasStarOnWalkOfFame: 'boolean'
+    };
+  
+    // Error handling
+    validator(req.body, validationRule, {}, (err, status) => {
+      if (!status) {
+        res.status(412).send({
+          success: false,
+          message: 'Actor validation failed',
+          data: err
+        });
+      } else {
+        next();
+      }
+    });
+  };
+
 module.exports = {
-    validateMovie
+    validateMovie,
+    validateActor
 };
