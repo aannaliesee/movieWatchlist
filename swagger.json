@@ -5,10 +5,10 @@
     "description": "Movie Watchlist Api",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "https://moviewatchlist.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/api-docs": {

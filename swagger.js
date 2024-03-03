@@ -8,8 +8,8 @@ const doc = {
         title: 'Movie Api',
         description: 'Movie Watchlist Api'
 },
-    host: 'localhost:8080',
-    schemes: ['http']
+    host: 'https://moviewatchlist.onrender.com',
+    schemes: ['https']
 };
 
 const outputFile = './swagger.json';
